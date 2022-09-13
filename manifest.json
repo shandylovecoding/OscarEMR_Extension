@@ -14,7 +14,7 @@
       ],
       "js": [
         "jquery.js",
-        "content.js"
+        "button.js"
       ]
     },
     {
@@ -25,6 +25,16 @@
       "js": [
         "jquery.js",
         "measurement.js"
+      ]
+    },
+    {
+      "run_at": "document_end",
+      "matches": [
+        "*://*/oscar/tickler/ticklerMain*"
+      ],
+      "js": [
+        "jquery.js",
+        "tickler.js"
       ]
     }
   ]
