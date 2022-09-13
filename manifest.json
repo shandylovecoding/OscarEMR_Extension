@@ -10,12 +10,21 @@
     {
       "run_at": "document_end",
       "matches": [
-        "*://*/oscar/casemgmt/forward.jsp?action=view&demographicNo=*",
+        "*://*/oscar/casemgmt/forward.jsp?action=view&demographicNo=*"
+      ],
+      "js": [
+        "jquery.js",
+        "content.js"
+      ]
+    },
+    {
+      "run_at": "document_end",
+      "matches": [
         "*://*/oscar/oscarEncounter/oscarMeasurements/*"
       ],
       "js": [
         "jquery.js",
-        "background.js"
+        "measurement.js"
       ]
     }
   ]
