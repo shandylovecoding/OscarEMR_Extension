@@ -1,4 +1,3 @@
-console.log(123);
 
 var elements = (window.location.pathname.split('/', 2))
 var firstElement = (elements.slice(1))
@@ -11,11 +10,9 @@ $.ajax({
     dataType: 'html',
     success: function (data) {
 
-
         var user = data.match("<title>(.*?)</title>")[1].split(',')[0];
 
         var theOptions = document.getElementsByName('assignedTo')[0].options;
-        console.log(theOptions);
         for (let i = 0; i < theOptions.length; i++) {
             console.log(theOptions[i].innerText);
             if (theOptions[i].innerText.indexOf(user) > -1) {
@@ -26,3 +23,17 @@ $.ajax({
 
     }
 });
+
+//Add Finish & LM button
+// $('form[name="ticklerform"] > table > tbody  > tr').each(function (index, tr) {
+//     var tick = document.createElement("button");
+//     tick.type = "button";
+//     tick.value = "Done";
+//     tick.onclick = done;
+//     function done() { window.open(vPath + 'oscarEncounter/oscarMeasurements/SetupMeasurements.do?groupName=Vital Signs', 'VitalsWindow', 'width=1000,height=500') }
+
+//     tick.setAttribute("style", "width:20px; height:20px; font-size:12px;");
+
+//     var newCell = tr.insertCell(tr.length)
+//     newCell.append(tick)
+// });
