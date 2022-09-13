@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "OscarButton",
+  "version": "2.1",
+  "description": "OCR Button",
+  "icons": {
+    "16": "/images/16.png"
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "matches": [
+        "*://*/oscar/casemgmt/forward.jsp?action=view&demographicNo=*",
+        "*://*/oscar/oscarEncounter/oscarMeasurements/*"
+      ],
+      "js": [
+        "jquery.js",
+        "background.js"
+      ]
+    }
+  ]
+}
