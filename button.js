@@ -3,8 +3,8 @@
 
 
   var demoNo = JSON.stringify(location.href);
-  demoNo = demoNo.substring(demoNo.indexOf('demographicNo') + 14, demoNo.indexOf('&provid'));
 
+  demoNo = demoNo.substring(demoNo.indexOf('demographicNo') + 14, demoNo.indexOf('&provid'));
   var elements = (window.location.pathname.split('/', 2))
   var firstElement = (elements.slice(1))
   console.log(firstElement)
