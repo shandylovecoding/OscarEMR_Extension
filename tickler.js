@@ -25,40 +25,53 @@ $.ajax({
 
 // Add Finish & LM button
 
-    $('table:eq(3) > tbody  > tr').each(function (index, tr) {
-        var ticklerMsg = $(this).find('td')[9].innerText
-        var url 
-        if($(this).find('a')[2]){
-            var find =  $(this).find('a')[2].getAttribute('onclick');
-        
-             url = find.substring(find.indexOf('1024')+9, find.indexOf('encounter')-3);
-        } else{
-            url = ""
-        }
-       
-        //var demoNo = find.substring(find.indexOf('demographic_no') + 15, find.indexOf('&displaymode') );
-    
-        var tick = document.createElement("button");
-        tick.type = "button";
-        tick.value = "Done";
-        tick.onclick = done;
-        tick.setAttribute("style", "width:20px; height:20px; font-size:12px;");
-        function done() {
-    
-            let eChart = window.open(vPath + url , 'Echart', 'width=1000,height=500')
-                setTimeout(
-                eChart.onload = function () {
-                    var textarea = eChart.$('textarea[name=caseNote_note]')[0]
-                    console.log(eChart.$('textarea[name=caseNote_note]'));
+$('table:eq(3) > tbody  > tr').each(function (index, tr) {
+    var ticklerMsg = $(this).find('td')[9].innerText
+    var url
+    if ($(this).find('a')[2]) {
+        var E = $(this).find('a')[2].getAttribute('onclick');
 
-                    console.log("textarea", textarea);
-                    if(textarea){
-                        textarea.innerHTML += '\n  Done  Tickler " ' + ticklerMsg + ' "'
-                        console.log("textarea.innerHTML",textarea.innerHTML);
-                    }
-                },2000)
-        }
-         var newCell = tr.insertCell(11)
-         newCell.append(tick)
-    
-     })
+        url = E.substring(E.indexOf('1024') + 9, E.indexOf('encounter') - 3);
+    } else {
+        url = ""
+    }
+    var ticklerUrl
+    if ($(this).find('a')[0]) {
+        var ticlkerButton = $(this).find('a')[0].getAttribute('onclick');
+        ticklerUrl = ticlkerButton.substring(ticlkerButton.indexOf('800') +9, ticlkerButton.indexOf('\')'));
+    } else {
+        ticklerUrl = ""
+    }
+    //var demoNo = find.substring(find.indexOf('demographic_no') + 15, find.indexOf('&displaymode') );
+    console.log(ticklerUrl);
+    var tick = document.createElement("input");
+    tick.type = "button";
+    tick.value = "✓";
+    tick.onclick = done;
+    tick.setAttribute("style", "width:20px; height:20px; font-size:12px; padding: 0");
+    function done() {
+
+        let eChart = window.open(vPath + url, 'Echart', 'width=1000,height=500')
+        setTimeout(
+            eChart.onload = function () {
+                var textarea = eChart.$('textarea[name=caseNote_note]')[0]
+
+                if (textarea) {
+                    textarea.innerHTML += '\n  Done  Tickler " ' + ticklerMsg + ' "'
+                }
+            }, 3000)
+        let tickler = window.open(vPath + ticklerUrl, 'Tickler', 'width=800,height=500')
+        setTimeout(
+            tickler.onload = function () {
+                var select = tickler.document.getElementsByTagName('select')[1]
+
+                console.log("select", select);
+                if (select) {
+                    select.value = "C"
+                }
+            }, 5000)
+    }
+    var newCell = tr.insertCell(11)
+    newCell.append(tick)
+
+})
